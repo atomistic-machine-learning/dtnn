@@ -1,4 +1,4 @@
-# Deep Tensor Neural Networks for atomistic predictions
+# Deep Tensor Neural Networks
 
 The deep tensor neural network (DTNN) enables spatially and chemically resolved
 insights into quantum-mechanical observables of molecular systems.
