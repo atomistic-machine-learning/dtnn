@@ -20,7 +20,7 @@ Basic usage:
 If you use deep tensor neural networks in your research, please cite:
 
 *K.T. Schütt. F. Arbabzadah. S. Chmiela, K.-R. Müller, A. Tkatchenko.  
-Quantum-chemical Insights from Deep Tensor Neural Networks.*  
+Quantum-chemical insights from deep tensor neural networks.*  
 Nature Communications **8**. 13890 (2017)   
 doi: [10.1038/ncomms13890](http://dx.doi.org/10.1038/ncomms13890)
     
