@@ -4,9 +4,10 @@ The deep tensor neural network (DTNN) enables spatially and chemically resolved
 insights into quantum-mechanical observables of molecular systems.
 
 Requirements:
+- python 3.4
 - ASE
 - numpy
-- tensorflow
+- tensorflow (>=1.0)
 
 See the `examples` folder for scripts for training and evaluation of a DTNN 
 model for predicting  the total energy (U0) for the GDB-9 data set.
