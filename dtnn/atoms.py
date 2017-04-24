@@ -5,7 +5,11 @@ import tensorflow as tf
 def interatomic_distances(positions, cell, pbc, cutoff):
     with tf.variable_scope('distance'):
         # calculate heights
-        icell = tf.matrix_inverse(cell)
+
+        # account for zero cell in case of no pbc
+        c = tf.reduce_sum(tf.cast(pbc, tf.int32)) > 0
+        icell = tf.cond(c, lambda: tf.matrix_inverse(cell),
+                        lambda: tf.eye(3))
         height = 1. / tf.sqrt(tf.reduce_sum(tf.square(icell), 0))
 
         extent = tf.where(tf.cast(pbc, tf.bool),
