@@ -1,5 +1,3 @@
-
-
 import logging
 import os
 import tarfile
@@ -65,8 +63,9 @@ def load_data(dbpath):
     tar.extractall(raw_path)
     tar.close()
 
-    prop_names = ['A', 'B', 'C', 'mu', 'alpha', 'homo', 'lumo',
-                  'gap', 'r2', 'zpve', 'U0', 'U', 'H', 'G', 'Cv']
+    prop_names = ['rcA', 'rcB', 'rcC', 'mu', 'alpha', 'homo', 'lumo',
+                  'gap', 'r2', 'zpve', 'energy_U0', 'energy_U', 'enthalpy_H',
+                  'free_G', 'Cv']
     conversions = [1., 1., 1., 1., Bohr ** 3 / Ang ** 3,
                    Hartree / eV, Hartree / eV, Hartree / eV,
                    Bohr ** 2 / Ang ** 2, Hartree / eV,

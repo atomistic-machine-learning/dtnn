@@ -30,15 +30,15 @@ def prepare_data(dbpath, partitions, splitdst):
 
     train_data = dtnn.ASEDataProvider(
         os.path.join(splitdst, 'train.db'),
-        kvp={'U0': (1,)}, prefetch=False, shuffle=True
+        kvp={'energy_U0': (1,)}, prefetch=False, shuffle=True
     )
     val_data = dtnn.ASEDataProvider(
         os.path.join(splitdst, 'validation.db'),
-        kvp={'U0': (1,)}, prefetch=True, shuffle=False
+        kvp={'energy_U0': (1,)}, prefetch=True, shuffle=False
     )
     test_data = dtnn.ASEDataProvider(
         os.path.join(splitdst, 'test_live.db'),
-        kvp={'U0': (1,)}, prefetch=True, shuffle=False
+        kvp={'energy_U0': (1,)}, prefetch=True, shuffle=False
     )
     return train_data, val_data, test_data
 
@@ -67,7 +67,7 @@ def main(args):
     e_atom = atom_reference['atom_ref'][:, 1:2]
 
     # calculate mean/std.dev. per atom
-    U0 = np.array(train_data.get_property('U0'))
+    U0 = np.array(train_data.get_property('energy_U0'))
     E = U0.reshape((-1, 1))
     Z = train_data.get_property('numbers')
     E0 = np.vstack([np.sum(e_atom[np.array(z)], 0) for z in Z]).reshape((-1, 1))
@@ -97,13 +97,13 @@ def main(args):
                      cutoff=args.cutoff)
 
     # setup cost functions
-    cost_fcn = dtnn.L2Loss(prediction='y', target='U0')
+    cost_fcn = dtnn.L2Loss(prediction='y', target='energy_U0')
     additional_cost_fcns = [
-        dtnn.MeanAbsoluteError(prediction='y', target='U0', name='U0_MAE'),
-        dtnn.RootMeanSquaredError(prediction='y', target='U0', name='U0_RMSE'),
-        dtnn.PAMeanAbsoluteError(prediction='y', target='U0',
-                                 name='U0_MAE_atom'),
-        dtnn.PARmse(prediction='y', target='U0', name='U0pN_RMSE_atom')
+        dtnn.MeanAbsoluteError(prediction='y', target='energy_U0', name='energy_U0_MAE'),
+        dtnn.RootMeanSquaredError(prediction='y', target='energy_U0', name='energy_U0_RMSE'),
+        dtnn.PAMeanAbsoluteError(prediction='y', target='energy_U0',
+                                 name='energy_U0_MAE_atom'),
+        dtnn.PARmse(prediction='y', target='energy_U0', name='energy_U0pN_RMSE_atom')
     ]
 
     # setup optimizer
