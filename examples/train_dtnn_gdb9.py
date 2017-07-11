@@ -57,10 +57,10 @@ def main(args):
                                                    partitions=partitions,
                                                    splitdst=split_dst)
     train_data.batch_size = 25
-    val_data.batch_size = 1000
-    test_data.batch_size = 1000
-    num_val_batches = 1
-    num_test_batches = 1
+    val_data.batch_size = 100
+    test_data.batch_size = 100
+    num_val_batches = 10
+    num_test_batches = 10
 
     # load atom energies
     atom_reference = np.load(atom_reference)
